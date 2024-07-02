@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrito de Compras</title>
+    <style>
+      
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .producto {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Carrito de Compras</h1>
+
+    <h2>Productos Disponibles</h2>
+    <div class="productos">
+        <div class="producto">
+            <span>Producto A</span>
+            <button onclick="agregarProducto(1)">Agregar</button>
+            <button onclick="quitarProducto(1)">Quitar</button>
+        </div>
+        <div class="producto">
+            <span>Producto B</span>
+            <button onclick="agregarProducto(2)">Agregar</button>
+            <button onclick="quitarProducto(2)">Quitar</button>
+        </div>
+        <!-- Agrega más productos según sea necesario -->
+    </div>
+
+    <h2>Carrito</h2>
+    <div class="carrito">
+        <ul>
+            
+        </ul>
+        <p>Cantidad total de productos en el carrito: </p>
+        <form action="/finalizar_compra" method="POST">
+            <button type="submit">Finalizar Compra</button>
+        </form>
+    </div>
+
+    <script>
+        function agregarProducto(productoId) {
+            fetch('/agregar/' + productoId, { method: 'POST' })
+                .then(() => location.reload());
+        }
+
+        function quitarProducto(productoId) {
+            fetch('/quitar/' + productoId, { method: 'POST' })
+                .then(() => location.reload());
+        }
+    </script>
+</body>
+</html>
